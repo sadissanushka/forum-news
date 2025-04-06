@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./components/header/header.css">
     <link rel="stylesheet" href="./components/footer/footer.css">
+    
+    
 </head>
 <body>
     <!-- Header -->
@@ -41,62 +43,7 @@
             <!-- News Section -->
             <div class="news-section">
                 <h2 class="section-title">Latest News</h2>
-                <div class="news-grid">
-                    <!-- News Card 1 -->
-                    <article class="news-card">
-                        <div class="news-image" style="background-image: url('/api/placeholder/400/200')"></div>
-                        <div class="news-content">
-                            <span class="news-category">Technology</span>
-                            <h3 class="news-title">New AI Breakthrough Sets Record in Natural Language Processing</h3>
-                            <p class="news-excerpt">Researchers have developed a new algorithm that improves language understanding capabilities by 45%...</p>
-                            <div class="news-meta">
-                                <span>5 hours ago</span>
-                                <span>243 comments</span>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <!-- News Card 2 -->
-                    <article class="news-card">
-                        <div class="news-image" style="background-image: url('/api/placeholder/400/200')"></div>
-                        <div class="news-content">
-                            <span class="news-category">Science</span>
-                            <h3 class="news-title">Mars Rover Discovers Signs of Ancient Microbial Life</h3>
-                            <p class="news-excerpt">NASA's latest findings suggest that Mars may have once harbored primitive life forms...</p>
-                            <div class="news-meta">
-                                <span>1 day ago</span>
-                                <span>187 comments</span>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <!-- News Card 3 -->
-                    <article class="news-card">
-                        <div class="news-image" style="background-image: url('/api/placeholder/400/200')"></div>
-                        <div class="news-content">
-                            <span class="news-category">Health</span>
-                            <h3 class="news-title">Study Reveals New Benefits of Intermittent Fasting</h3>
-                            <p class="news-excerpt">A comprehensive 10-year study shows significant improvements in metabolic health and longevity...</p>
-                            <div class="news-meta">
-                                <span>2 days ago</span>
-                                <span>92 comments</span>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <!-- News Card 4 -->
-                    <article class="news-card">
-                        <div class="news-image" style="background-image: url('/api/placeholder/400/200')"></div>
-                        <div class="news-content">
-                            <span class="news-category">Environment</span>
-                            <h3 class="news-title">Innovative Ocean Cleanup Project Removes 50 Tons of Plastic</h3>
-                            <p class="news-excerpt">A new approach to cleaning ocean garbage patches has shown remarkable success in its first month...</p>
-                            <div class="news-meta">
-                                <span>3 days ago</span>
-                                <span>156 comments</span>
-                            </div>
-                        </div>
-                    </article>
+                <div class="news-grid" id="news-grid">
                 </div>
             </div>
             
@@ -189,8 +136,6 @@
     <!-- Footer -->
     <div id="footer-container"></div>
 
-    
-    <script src="main.js"></script>
     <script>
         // Load header component
         fetch('components/header/header.html')
@@ -208,6 +153,7 @@
                 document.getElementById('footer-container').innerHTML = html;
             });
     </script>
+    <script type="module" src="./main.js"></script>
 
 </body>
 </html>
