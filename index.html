@@ -5,64 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiscussDaily - News & Forums</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./components/header/header.css">
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <div class="container navbar">
-            <div class="nav-container">
-                <a href="#" class="logo">Discuss<span>Daily</span></a>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <!-- Desktop Navigation -->
-            <nav class="nav-links">
-                <a href="index.html">Home</a>
-                
-                <div class="dropdown">
-                    <a href="news.html" class="dropdown-trigger">News <span class="dropdown-icon">▼</span></a>
-                    <div class="dropdown-content">
-                        <a href="news/technology.html">Technology</a>
-                        <a href="news/science.html">Science</a>
-                        <a href="news/health.html">Health</a>
-                        <a href="news/environment.html">Environment</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a href="forums.html" class="dropdown-trigger">Forums <span class="dropdown-icon">▼</span></a>
-                    <div class="dropdown-content">
-                        <a href="forums/technology.html">Technology</a>
-                        <a href="forums/science.html">Science</a>
-                        <a href="forums/health.html">Health</a>
-                        <a href="forums/gaming.html">Gaming</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a href="categories.html" class="dropdown-trigger">Categories <span class="dropdown-icon">▼</span></a>
-                    <div class="dropdown-content">
-                        <a href="categories/technology.html">Technology</a>
-                        <a href="categories/science.html">Science</a>
-                        <a href="categories/health.html">Health</a>
-                        <a href="categories/gaming.html">Gaming</a>
-                    </div>
-                </div>
-                <a href="about.html">About</a>
-            </nav>
-            <div class="auth-buttons">
-                <div class="dark-mode-toggle">
-                    <div class="toggle-thumb">
-                        <span class="slider">
-                        </span>
-                    </div>
-                </div>
-                <button class="btn btn-outline login-btn">Login</button>
-                <button class="btn btn-primary">Sign Up</button>
-            </div>
-        </div>
-    </header>
+    <div id="header-container"></div>
 
     <!-- Breadcrumb -->
     <div class="breadcrumb">
@@ -285,6 +232,18 @@
         </div>
     </footer>
     <script src="main.js"></script>
+    <script>
+        // Load header component
+        fetch('components/header/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+                // Load header script dynamically after HTML is inserted
+                const script = document.createElement('script');
+                script.src = 'components/header/header.js';
+                document.body.appendChild(script);
+            });
+    </script>
 
 </body>
 </html>
