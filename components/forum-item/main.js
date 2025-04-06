@@ -1,4 +1,4 @@
-import { forumData } from './data/forum-item-data.js';
+import { forumPosts } from './data/forum-item-data.js';
 import { createForumItem } from './forum-item.js';
 
 // Add styling to make the news grid and cards display properly
@@ -56,14 +56,18 @@ function addStyles() {
     document.head.appendChild(styleElement);
 }
 
-// Initialize the news grid with cards
+// Initialize the forum list with items
 function initForumList() {
     const forumList = document.getElementById('forum-list');
     
-    forumData.forEach(item => {
-        const card = createForumItem(item);
-        forumList.appendChild(card);
-    });
+    if (forumList) {
+        forumPosts.forEach(item => {
+            const forumItem = createForumItem(item);
+            forumList.appendChild(forumItem);
+        });
+    } else {
+        console.error('Forum list element not found');
+    }
 }
 
 // Run when the DOM is fully loaded
