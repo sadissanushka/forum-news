@@ -1,5 +1,5 @@
-import { getBreadcrumbFromURL } from './components/breadcrumb/breadcrumb-url.js';
-import { createBreadcrumb } from './components/breadcrumb/breadcrumb.js';
+import { getBreadcrumbFromURL } from './breadcrumb-url.js';
+import { createBreadcrumb } from './breadcrumb.js';
 
 // Add styling to make the breadcrumb display properly
 function addStyles() {
@@ -52,6 +52,8 @@ function initBreadcrumb() {
     const breadcrumbItems = getBreadcrumbFromURL();
     const breadcrumbElement = createBreadcrumb(breadcrumbItems);
     container.appendChild(breadcrumbElement);
+  } else {
+    console.error('Breadcrumb container not found');
   }
 }
 
