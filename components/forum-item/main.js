@@ -1,4 +1,4 @@
-import { newsData } from './data/forum-item-data.js';
+import { forumData } from './data/forum-item-data.js';
 import { createForumItem } from './forum-item.js';
 
 // Add styling to make the news grid and cards display properly
@@ -57,18 +57,17 @@ function addStyles() {
 }
 
 // Initialize the news grid with cards
-function initNewsGrid() {
-    const newsGrid = document.getElementById('news-grid');
+function initForumList() {
+    const forumList = document.getElementById('forum-list');
     
-    // Add each news item to the grid
-    newsData.forEach(newsItem => {
-        const card = createForumItem(newsItem);
-        newsGrid.appendChild(card);
+    forumData.forEach(item => {
+        const card = createForumItem(item);
+        forumList.appendChild(card);
     });
 }
 
 // Run when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     addStyles();
-    initNewsGrid();
+    initForumList();
 });
