@@ -145,120 +145,9 @@ body.dark-mode .breadcrumb {
     border-bottom: 2px solid var(--secondary-color);
 }
 
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.news-card {
-    background-color: var(--light-card);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s, background-color 0.3s;
-}
-
-body.dark-mode .news-card {
-    background-color: var(--dark-card);
-    box-shadow: var(--dark-box-shadow);
-}
-
-.news-card:hover {
-    transform: translateY(-5px);
-}
-
-.news-image {
-    height: 200px;
-    background-color: #ddd;
-    background-size: cover;
-    background-position: center;
-}
-
-.news-content {
-    padding: 15px;
-}
-
-.news-category {
-    display: inline-block;
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    margin-bottom: 10px;
-}
-
-.news-title {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-.news-excerpt {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-}
-
-body.dark-mode .news-excerpt {
-    color: #bbb;
-}
-
-.news-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: #999;
-}
+/* news-grid */
 
 /* Trending Forums */
-.trending-forums {
-    background-color: var(--light-card);
-    border-radius: var(--border-radius);
-    padding: 20px;
-    box-shadow: var(--box-shadow);
-    transition: background-color 0.3s;
-}
-
-body.dark-mode .trending-forums {
-    background-color: var(--dark-card);
-    box-shadow: var(--dark-box-shadow);
-}
-
-.forum-list {
-    list-style: none;
-}
-
-.forum-item {
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
-}
-
-body.dark-mode .forum-item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.forum-item:last-child {
-    border-bottom: none;
-}
-
-.forum-title {
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 5px;
-}
-
-.forum-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: #999;
-}
-
-.forum-stats {
-    display: flex;
-    gap: 15px;
-}
 
 /* Categories Section */
 .categories {
@@ -310,8 +199,6 @@ body.dark-mode .category-card:hover {
 }
 
 /* Footer */
-
-/* s */
 
 /* Mobile Dropdown */
 .mobile-nav-links .dropdown-content {

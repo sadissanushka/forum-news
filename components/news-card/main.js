@@ -1,5 +1,5 @@
-import { newsData } from './components/news-card/data/news-card-data.js';
-import { createNewsCard } from './components/news-card/news-card.js';
+import { newsData } from './data/news-card-data.js';
+import { createNewsCard } from './news-card.js';
 
 // Add styling to make the news grid and cards display properly
 function addStyles() {
