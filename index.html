@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiscussDaily - News & Forums</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container navbar">
+            <div class="nav-container">
+                <a href="#" class="logo">Discuss<span>Daily</span></a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <!-- Desktop Navigation -->
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                
+                <div class="dropdown">
+                    <a href="news.html" class="dropdown-trigger">News <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown-content">
+                        <a href="news/technology.html">Technology</a>
+                        <a href="news/science.html">Science</a>
+                        <a href="news/health.html">Health</a>
+                        <a href="news/environment.html">Environment</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="forums.html" class="dropdown-trigger">Forums <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown-content">
+                        <a href="forums/technology.html">Technology</a>
+                        <a href="forums/science.html">Science</a>
+                        <a href="forums/health.html">Health</a>
+                        <a href="forums/gaming.html">Gaming</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="categories.html" class="dropdown-trigger">Categories <span class="dropdown-icon">▼</span></a>
+                    <div class="dropdown-content">
+                        <a href="categories/technology.html">Technology</a>
+                        <a href="categories/science.html">Science</a>
+                        <a href="categories/health.html">Health</a>
+                        <a href="categories/gaming.html">Gaming</a>
+                    </div>
+                </div>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="auth-buttons">
+                <div class="dark-mode-toggle">
+                    <div class="toggle-thumb">
+                        <span class="slider">
+                        </span>
+                    </div>
+                </div>
+                <button class="btn btn-outline login-btn">Login</button>
+                <button class="btn btn-primary">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">News</a></li>
+                <li class="breadcrumb-item active">Latest</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Join the Conversation</h1>
+            <p>Stay informed with the latest news and engage in meaningful discussions with our community.</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Search news, forums, topics...">
+                <button>Search</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Main Content -->
+        <section class="main-content">
+            <!-- News Section -->
+            <div class="news-section">
+                <h2 class="section-title">Latest News</h2>
+                <div class="news-grid">
+                    <!-- News Card 1 -->
+                    <article class="news-card">
+                        <div class="news-image" style="background-image: url('/api/placeholder/400/200')"></div>
+                        <div class="news-content">
+                            <span class="news-category">Technology</span>
+                            <h3 class="news-title">New AI Breakthrough Sets Record in Natural Language Processing</h3>
+                            <p class="news-excerpt">Researchers have developed a new algorithm that improves language understanding capabilities by 45%...</p>
+                            <div class="news-meta">
+                                <span>5 hours ago</span>
+                                <span>243 comments</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- News Card 2 -->
+                    <article class="news-card">
+                        <div class="news-image" style="background-image: url('/api/placeholder/400/200')"></div>
+                        <div class="news-content">
+                            <span class="news-category">Science</span>
+                            <h3 class="news-title">Mars Rover Discovers Signs of Ancient Microbial Life</h3>
+                            <p class="news-excerpt">NASA's latest findings suggest that Mars may have once harbored primitive life forms...</p>
+                            <div class="news-meta">
+                                <span>1 day ago</span>
+                                <span>187 comments</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- News Card 3 -->
+                    <article class="news-card">
+                        <div class="news-image" style="background-image: url('/api/placeholder/400/200')"></div>
+                        <div class="news-content">
+                            <span class="news-category">Health</span>
+                            <h3 class="news-title">Study Reveals New Benefits of Intermittent Fasting</h3>
+                            <p class="news-excerpt">A comprehensive 10-year study shows significant improvements in metabolic health and longevity...</p>
+                            <div class="news-meta">
+                                <span>2 days ago</span>
+                                <span>92 comments</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- News Card 4 -->
+                    <article class="news-card">
+                        <div class="news-image" style="background-image: url('/api/placeholder/400/200')"></div>
+                        <div class="news-content">
+                            <span class="news-category">Environment</span>
+                            <h3 class="news-title">Innovative Ocean Cleanup Project Removes 50 Tons of Plastic</h3>
+                            <p class="news-excerpt">A new approach to cleaning ocean garbage patches has shown remarkable success in its first month...</p>
+                            <div class="news-meta">
+                                <span>3 days ago</span>
+                                <span>156 comments</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            
+            <!-- Trending Forums Sidebar -->
+            <aside class="trending-forums">
+                <h2 class="section-title">Trending Discussions</h2>
+                <ul class="forum-list">
+                    <li class="forum-item">
+                        <div class="forum-title">Is web development becoming too complex for beginners?</div>
+                        <div class="forum-meta">
+                            <span>by CodeExplorer</span>
+                            <div class="forum-stats">
+                                <span>42 replies</span>
+                                <span>Hot</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="forum-item">
+                        <div class="forum-title">The future of remote work after the pandemic</div>
+                        <div class="forum-meta">
+                            <span>by WorkLifeBalance</span>
+                            <div class="forum-stats">
+                                <span>87 replies</span>
+                                <span>Trending</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="forum-item">
+                        <div class="forum-title">Book recommendations for personal growth in 2025</div>
+                        <div class="forum-meta">
+                            <span>by Bibliophile24</span>
+                            <div class="forum-stats">
+                                <span>63 replies</span>
+                                <span>Active</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="forum-item">
+                        <div class="forum-title">Should quantum computing be a priority in education?</div>
+                        <div class="forum-meta">
+                            <span>by QuantumLeap</span>
+                            <div class="forum-stats">
+                                <span>29 replies</span>
+                                <span>New</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="forum-item">
+                        <div class="forum-title">The ethics of AI in content creation industries</div>
+                        <div class="forum-meta">
+                            <span>by CreativeAI</span>
+                            <div class="forum-stats">
+                                <span>105 replies</span>
+                                <span>Hot</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+        </section>
+        
+        <!-- Categories Section -->
+        <section class="categories">
+            <h2 class="section-title">Popular Categories</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">💻</div>
+                    <div class="category-name">Technology</div>
+                    <div class="category-count">1.2k topics</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🔬</div>
+                    <div class="category-name">Science</div>
+                    <div class="category-count">874 topics</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🏋️</div>
+                    <div class="category-name">Health</div>
+                    <div class="category-count">692 topics</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🎮</div>
+                    <div class="category-name">Gaming</div>
+                    <div class="category-count">1.5k topics</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Community Guidelines</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Moderation</a></li>
+                        <li><a href="#">Developer API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Discord</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 DiscussDaily. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+
+</body>
+</html>
