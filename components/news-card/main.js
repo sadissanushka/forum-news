@@ -17,6 +17,7 @@ function addStyles() {
         overflow: hidden;
         box-shadow: var(--box-shadow);
         transition: transform 0.3s, background-color 0.3s;
+        cursor: pointer;
     }
 
     body.dark-mode .news-card {
@@ -70,6 +71,12 @@ function addStyles() {
         font-size: 0.8rem;
         color: #999;
     }
+
+    @media (max-width: 768px) {
+        .news-grid {
+            grid-template-columns: 1fr;
+        }
+    }
     `;
     document.head.appendChild(styleElement);
 }
@@ -78,11 +85,15 @@ function addStyles() {
 function initNewsGrid() {
     const newsGrid = document.getElementById('news-grid');
     
-    // Add each news item to the grid
-    newsData.forEach(newsItem => {
-        const card = createNewsCard(newsItem);
-        newsGrid.appendChild(card);
-    });
+    if (newsGrid) {
+        // Add each news item to the grid
+        newsData.forEach(newsItem => {
+            const card = createNewsCard(newsItem);
+            newsGrid.appendChild(card);
+        });
+    } else {
+        console.error('News grid element not found');
+    }
 }
 
 // Run when the DOM is fully loaded

@@ -56,19 +56,23 @@ function addStyles() {
     document.head.appendChild(styleElement);
 }
 
-// Initialize the news grid with cards
-function initNewsGrid() {
+// Initialize the category grid with cards
+function initCategoryGrid() {
     const grid = document.getElementById('category-grid');
     
-    // Add each news item to the grid
-    categories.forEach(category => {
-        const card = createCategoryCard(category);
-        grid.appendChild(card);
-    });
+    if (grid) {
+        // Add each category item to the grid
+        categories.forEach(category => {
+            const card = createCategoryCard(category);
+            grid.appendChild(card);
+        });
+    } else {
+        console.error('Category grid element not found');
+    }
 }
 
 // Run when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     addStyles();
-    initNewsGrid();
+    initCategoryGrid();
 });
