@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | DiscussDaily</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .error-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('/api/placeholder/1200/800') center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            color: var(--accent-color);
+        }
+        
+        .error-message {
+            font-size: 2rem;
+            margin: 10px 0 30px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .error-description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+        
+        .error-btn {
+            padding: 12px 24px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .error-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .meme-container {
+            position: relative;
+            max-width: 500px;
+            margin: 30px auto;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .meme-image {
+            width: 100%;
+            display: block;
+        }
+        
+        .meme-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 2rem;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+            padding: 10px;
+        }
+        
+        .meme-text-top {
+            top: 10px;
+        }
+        
+        .meme-text-bottom {
+            bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-message">Page Not Found</h2>
+        <p class="error-description">Looks like you've found a digital black hole! The page you're looking for has disappeared into the void.</p>
+        
+        <div class="meme-container">
+            <img src="/api/placeholder/500/400" alt="404 Meme" class="meme-image">
+            <div class="meme-text meme-text-top">LOOKING FOR A PAGE</div>
+            <div class="meme-text meme-text-bottom">THAT DOESN'T EXIST</div>
+        </div>
+        
+        <a href="index.html" class="error-btn">Back to Home</a>
+    </div>
+
+    <script>
+        // Random meme generator function
+        document.addEventListener('DOMContentLoaded', () => {
+            const memes = [
+                {
+                    top: "LOOKING FOR A PAGE",
+                    bottom: "THAT DOESN'T EXIST"
+                },
+                {
+                    top: "404 ERROR",
+                    bottom: "PAGE NOT FOUND"
+                },
+                {
+                    top: "I DON'T ALWAYS GET LOST",
+                    bottom: "BUT WHEN I DO, IT'S 404"
+                },
+                {
+                    top: "ONE DOES NOT SIMPLY",
+                    bottom: "FIND THIS PAGE"
+                }
+            ];
+            
+            // Select a random meme
+            const randomMeme = memes[Math.floor(Math.random() * memes.length)];
+            
+            // Update meme text
+            document.querySelector('.meme-text-top').textContent = randomMeme.top;
+            document.querySelector('.meme-text-bottom').textContent = randomMeme.bottom;
+        });
+    </script>
+</body>
+</html>

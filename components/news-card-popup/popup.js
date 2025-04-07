@@ -65,16 +65,25 @@ function showNewsPopup(newsItem) {
     overlay.appendChild(popup);
     document.body.appendChild(overlay);
     
+    // Prevent scrolling of the background
+    document.body.style.overflow = 'hidden';
+    
+    // Add blur effect to the main content
+    const mainContent = document.querySelector('.container');
+    if (mainContent) {
+        mainContent.classList.add('blur-background');
+    }
+    
     // Add close button event listener
     const closeBtn = popup.querySelector('.popup-close-btn');
     closeBtn.addEventListener('click', () => {
-        document.body.removeChild(overlay);
+        closePopup(overlay);
     });
     
     // Close when clicking outside the popup
     overlay.addEventListener('click', (e) => {
         if (e.target === overlay) {
-            document.body.removeChild(overlay);
+            closePopup(overlay);
         }
     });
     
@@ -90,6 +99,31 @@ function showNewsPopup(newsItem) {
         alert(`Opening ChatGPT Q&A for "${newsItem.title}"`);
         // Here you would implement the ChatGPT functionality
     });
+    
+    // Add keyboard event listener to close popup on ESC key
+    document.addEventListener('keydown', handleKeyDown);
+    
+    function handleKeyDown(e) {
+        if (e.key === 'Escape') {
+            closePopup(overlay);
+            document.removeEventListener('keydown', handleKeyDown);
+        }
+    }
+}
+
+// Function to close popup and restore normal state
+function closePopup(overlay) {
+    // Remove blur effect
+    const mainContent = document.querySelector('.container');
+    if (mainContent) {
+        mainContent.classList.remove('blur-background');
+    }
+    
+    // Allow scrolling again
+    document.body.style.overflow = '';
+    
+    // Remove the overlay
+    document.body.removeChild(overlay);
 }
 
 // Add styles for popup
@@ -125,6 +159,12 @@ function addPopupStyles() {
         body.dark-mode .news-popup {
             background-color: var(--dark-card);
             color: var(--dark-mode-text);
+        }
+        
+        /* Blur effect for background elements */
+        .blur-background {
+            filter: blur(5px);
+            transition: filter 0.3s ease;
         }
         
         @keyframes popup-fade-in {
