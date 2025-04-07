@@ -1,5 +1,5 @@
 import { newsData } from './data/news-card-data.js';
-import { createNewsCard } from './news-card.js';
+import { createNewsCard } from '../news-card-popup/popup.js';
 
 // Add styling to make the news grid and cards display properly
 function addStyles() {
