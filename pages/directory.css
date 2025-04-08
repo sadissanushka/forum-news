@@ -1,0 +1,123 @@
+/* Project Directory Structure List Styles */
+ul {
+    font-family: 'Courier New', monospace;
+    line-height: 1.5;
+    list-style-type: none;
+    padding-left: 20px;
+    margin: 20px 0;
+    color: var(--dark-text);
+}
+
+.dark-mode ul {
+    color: var(--dark-mode-text);
+}
+
+/* Main project folder */
+ul > li {
+    font-weight: bold;
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Sub-folders */
+ul ul li {
+    font-weight: normal;
+    position: relative;
+    padding: 3px 0;
+}
+
+/* Add folder icons */
+ul li::before {
+    content: "📁";
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+/* Files (items in ordered lists) */
+ol {
+    list-style-type: none;
+    padding-left: 20px;
+    margin: 5px 0;
+}
+
+ol li {
+    position: relative;
+    padding: 2px 0;
+}
+
+/* Add file icons */
+ol li::before {
+    content: "📄";
+    margin-right: 8px;
+    font-size: 1em;
+}
+
+/* File type specific icons */
+ol li:nth-child(1)::before {
+    content: "🌐"; /* HTML file */
+}
+
+ol li:nth-child(2)::before {
+    content: "🎨"; /* CSS file */
+}
+
+ol li:nth-child(3)::before {
+    content: "⚙️"; /* JS file */
+}
+
+/* Connect folders with lines */
+ul ul::before {
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid var(--secondary-color);
+}
+
+ul li {
+    position: relative;
+}
+
+ul ul li::after {
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 12px;
+    width: 10px;
+    height: 1px;
+    background-color: var(--secondary-color);
+}
+
+/* Container for the file structure */
+.file-structure-container {
+    background-color: var(--light-card);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    margin: 30px 0;
+    overflow-x: auto;
+}
+
+.dark-mode .file-structure-container {
+    background-color: var(--dark-card);
+    box-shadow: var(--dark-box-shadow);
+}
+
+/* Hover effect */
+ul li:hover > ul > li,
+ol li:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: 4px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    ul, ol {
+        padding-left: 15px;
+    }
+    
+    .file-structure-container {
+        padding: 15px;
+    }
+}

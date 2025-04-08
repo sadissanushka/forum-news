@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Directory Structure</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/components/header/header.css">
+    <link rel="stylesheet" href="/components/footer/footer.css">
+    <link rel="stylesheet" href="directory.css">
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" id="breadcrumb-container"></div>
+    <div class="file-structure-container">
+      <ul>
+          <li>project/
+            <ul>
+              <li>components/
+                <ul>
+                  <li>header/
+                    <ol>
+                      <li>header.html</li>
+                      <li>header.css</li>
+                      <li>header.js</li>
+                    </ol>
+                  </li>
+                  <li>footer/</li>
+                  <li>news-card/</li>
+                  <li>forum-item/</li>
+                  <li>category-card/</li>
+                </ul>
+              </li>
+              <li>pages/
+                <ul>
+                  <li>home/</li>
+                  <li>news/</li>
+                  <li>forums/</li>
+                </ul>
+              </li>
+              <li>assets/
+                <ul>
+                  <li>css/</li>
+                  <li>js/</li>
+                  <li>images/</li>
+                </ul>
+              </li>
+              <li>utils/</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div id="footer-container"></div>
+
+      <script>
+          // Load header component
+          fetch('components/header/header.html')
+              .then(response => response.text())
+              .then(html => {
+                  document.getElementById('header-container').innerHTML = html;
+                  // Load header script dynamically after HTML is inserted
+                  const script = document.createElement('script');
+                  script.src = 'components/header/header.js';
+                  document.body.appendChild(script);
+                  
+                  // Initialize events module after header is loaded
+                  import('./components/events/events-popup.js')
+                      .then(module => {
+                          module.initEvents();
+                      })
+                      .catch(error => console.error('Error loading events module:', error));
+              });
+          fetch('components/footer/footer.html')
+              .then(response => response.text())
+              .then(html => {
+                  document.getElementById('footer-container').innerHTML = html;
+              });
+      </script>
+      <script>
+        // Load header component
+        fetch('../components/header/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+                // Load header script dynamically after HTML is inserted
+                const script = document.createElement('script');
+                script.src = '../components/header/header.js';
+                document.body.appendChild(script);
+            });
+        fetch('../components/footer/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer-container').innerHTML = html;
+            });
+    </script>
+</body>
+</html>
