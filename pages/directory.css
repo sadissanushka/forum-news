@@ -27,7 +27,7 @@ ul ul li {
 }
 
 /* Add folder icons */
-ul li::before {
+.file_container ul li::before {
     content: "📁";
     margin-right: 8px;
     font-size: 1.1em;
@@ -90,7 +90,7 @@ ul ul li::after {
 }
 
 /* Container for the file structure */
-.file-structure-container {
+.file_container {
     background-color: var(--light-card);
     border-radius: var(--border-radius);
     padding: 20px;
@@ -99,7 +99,7 @@ ul ul li::after {
     overflow-x: auto;
 }
 
-.dark-mode .file-structure-container {
+.dark-mode .file_container {
     background-color: var(--dark-card);
     box-shadow: var(--dark-box-shadow);
 }

@@ -1,6 +1,6 @@
 export const newsData = [
     {
-      image: '/api/placeholder/400/200',
+      image: '/img/101.jpeg',
       category: 'Technology',
       title: 'New AI Breakthrough Sets Record in Natural Language Processing',
       excerpt: 'Researchers have developed a new algorithm that improves language understanding capabilities by 45%...',
@@ -9,7 +9,7 @@ export const newsData = [
       likes: 482
     },
     {
-      image: '/api/placeholder/400/200',
+      image: '/img/103.jpeg',
       category: 'Science',
       title: 'Mars Rover Discovers Signs of Ancient Microbial Life',
       excerpt: 'NASA\'s latest findings suggest that Mars may have once harbored primitive life forms...',
@@ -18,7 +18,7 @@ export const newsData = [
       likes: 356
     },
     {
-      image: '/api/placeholder/400/200',
+      image: '/img/102.jpeg',
       category: 'Health',
       title: 'Study Reveals New Benefits of Intermittent Fasting',
       excerpt: 'A comprehensive 10-year study shows significant improvements in metabolic health and longevity...',
@@ -27,7 +27,7 @@ export const newsData = [
       likes: 215
     },
     {
-      image: '/api/placeholder/400/200',
+      image: '/img/104.webp',
       category: 'Environment',
       title: 'Innovative Ocean Cleanup Project Removes 50 Tons of Plastic',
       excerpt: 'A new approach to cleaning ocean garbage patches has shown remarkable success in its first month...',

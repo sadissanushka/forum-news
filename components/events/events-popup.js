@@ -35,7 +35,7 @@ const eventsData = [
 // Initialize events functionality
 export function initEvents() {
     // Add event listener to the Events link in the header
-    const eventsLink = document.querySelector('a[href="pages/about.html"]');
+    const eventsLink = document.querySelector('a[href="pages/events.html"]');
     if (eventsLink) {
         eventsLink.addEventListener('click', (e) => {
             e.preventDefault();
