@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earth View - ISS Time-lapse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent-color: #3498db;
+            --text-color: #ecf0f1;
+            --text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            color: var(--text-color);
+            overflow: hidden;
+            /* background-color: #000; */
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .video-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        #bg-video {
+            position: absolute;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            padding: 60px;
+            max-width: 900px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            text-shadow: var(--text-shadow);
+        }
+
+        .typing-container {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .typing-text {
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin: 0;
+            text-shadow: 0 0 20px rgba(100, 255, 218, 0.5);
+            position: relative;
+        }
+
+        .typing-text::after {
+            content: "|";
+            position: absolute;
+            right: -15px;
+            color: var(--accent-color);
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .enter-button {
+            background: var(--glass-bg);
+            color: var(--text-color);
+            border: 1px solid var(--glass-border);
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 10px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enter-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: 0.6s;
+        }
+
+        .enter-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-color);
+        }
+
+        .enter-button:hover::before {
+            transform: translateX(100%);
+        }
+
+        .enter-button i {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .enter-button:hover i {
+            transform: translateX(5px);
+        }
+
+        .credit {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            text-shadow: var(--text-shadow);
+        }
+
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            .typing-text {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-glass {
+                padding: 40px 30px;
+            }
+            .hero-title {
+                font-size: 3rem;
+            }
+            .typing-text {
+                font-size: 2.5rem;
+            }
+            .typing-container {
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-glass {
+                padding: 30px 20px;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .typing-text {
+                font-size: 1.8rem;
+            }
+            .typing-container {
+                height: 50px;
+                margin-bottom: 30px;
+            }
+            .enter-button {
+                padding: 15px 40px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <!-- Using placeholder as we can't embed YouTube directly -->
+       <video autoplay muted loop id="bg-video">
+            <source src="videoplayback.mp4" type="video/mp4">
+        </video> 
+    </div>
+
+    <div class="hero-container">
+        <div class="hero-glass">
+            <h1 class="hero-title">Join the</h1>
+            <div class="typing-container">
+                <h1 class="typing-text"></h1>
+            </div>
+            <a href="/">
+                <button class="enter-button">ENTER <i class="fas fa-arrow-right"></i></button>
+            </a>
+        </div>
+        <div class="credit">Footage: "All Alone in the Night - Time-lapse of Earth from the ISS"</div>
+    </div>
+
+    <script>
+        // Typing effect animation
+        const typingElement = document.querySelector('.typing-text');
+        const words = ["Conversation", "Discussion", "Community", "Discovery"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 150;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 80; // Faster when deleting
+            } else {
+                typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 150; // Normal typing speed
+            }
+            
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                typeSpeed = 2000; // Pause at end of word  
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500; // Pause before typing next word
+            }
+            
+            setTimeout(type, typeSpeed);
+        }
+        
+        // Start typing effect after page load
+        window.addEventListener('load', () => {
+            setTimeout(type, 1000);
+        });
+    </script>
+</body>
+</html>

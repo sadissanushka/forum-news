@@ -1,5 +1,5 @@
 import { forumPosts } from './data/forum-item-data.js';
-import { createForumItem } from './forum-item.js';
+import { createForumItem } from '../forum-reply-popup/forum-reply-popup.js';
 
 // Add styling to make the news grid and cards display properly
 function addStyles() {
