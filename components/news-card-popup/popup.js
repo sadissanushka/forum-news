@@ -1,12 +1,20 @@
+// Update the popup.js file
+
 // Enhanced news card with popup functionality
-export function createNewsCard({ image, category, title, excerpt, timeAgo, comments }) {
+export function createNewsCard({ image, category, title, excerpt, timeAgo, comments, likes = 0 }) {
     const card = document.createElement('article');
     card.className = 'news-card';
 
     card.innerHTML = `
         <div class="news-image" style="background-image: url('${image}')"></div>
         <div class="news-content">
-            <span class="news-category">${category}</span>
+            <div class="news-header">
+                <span class="news-category">${category}</span>
+                <div class="like-button" data-likes="${likes}">
+                    <i class="like-icon">♥</i>
+                    <span class="likes-count">${likes}</span>
+                </div>
+            </div>
             <h3 class="news-title">${title}</h3>
             <p class="news-excerpt">${excerpt}</p>
             <div class="news-meta">
@@ -16,16 +24,54 @@ export function createNewsCard({ image, category, title, excerpt, timeAgo, comme
         </div>
     `;
 
+    // Generate a unique ID for this news item
+    const cardId = `news-${title.replace(/\s+/g, '-').toLowerCase()}`;
+    
+    // Add like/upvote functionality
+    const likeButton = card.querySelector('.like-button');
+    const likesCountDisplay = card.querySelector('.likes-count');
+    let liked = localStorage.getItem(cardId) === 'liked';
+    
+    // Set initial state
+    if (liked) {
+        likeButton.classList.add('liked');
+    }
+
+    likeButton.addEventListener('click', (e) => {
+        e.stopPropagation(); // Very important to prevent the card click
+        
+        let currentLikes = parseInt(likesCountDisplay.textContent);
+        
+        if (!liked) {
+            currentLikes++;
+            likeButton.classList.add('liked');
+            liked = true;
+            localStorage.setItem(cardId, 'liked');
+        } else {
+            currentLikes--;
+            likeButton.classList.remove('liked');
+            liked = false;
+            localStorage.removeItem(cardId);
+        }
+        
+        likesCountDisplay.textContent = currentLikes;
+    });
+
     // Add click event to show popup
-    card.addEventListener('click', () => {
-        showNewsPopup({
-            image,
-            category,
-            title,
-            excerpt,
-            timeAgo,
-            comments
-        });
+    card.addEventListener('click', (e) => {
+        // Don't show popup if clicking the like button
+        if (!e.target.closest('.like-button')) {
+            showNewsPopup({
+                image,
+                category,
+                title,
+                excerpt,
+                timeAgo,
+                comments,
+                likes: parseInt(likesCountDisplay.textContent), // Get current likes count
+                cardId // Pass the ID to maintain like state
+            });
+        }
     });
 
     return card;
@@ -44,7 +90,13 @@ function showNewsPopup(newsItem) {
     popup.innerHTML = `
         <div class="popup-header">
             <span class="news-category">${newsItem.category}</span>
-            <button class="popup-close-btn">&times;</button>
+            <div class="popup-actions-top">
+                <div class="like-button popup-like-button" data-likes="${newsItem.likes}">
+                    <i class="like-icon">♥</i>
+                    <span class="likes-count">${newsItem.likes}</span>
+                </div>
+                <button class="popup-close-btn">&times;</button>
+            </div>
         </div>
         <div class="popup-image" style="background-image: url('${newsItem.image}')"></div>
         <div class="popup-content">
@@ -68,8 +120,48 @@ function showNewsPopup(newsItem) {
     // Prevent scrolling of the background
     document.body.style.overflow = 'hidden';
     
-    // Add blur effect to all main content elements
+    // Apply blur effect to all main content elements
     applyBlurToMainContent(true);
+    
+    // Sync like button state from localStorage
+    const popupLikeButton = popup.querySelector('.popup-like-button');
+    const popupLikesCount = popup.querySelector('.likes-count');
+    let liked = localStorage.getItem(newsItem.cardId) === 'liked';
+    
+    if (liked) {
+        popupLikeButton.classList.add('liked');
+    }
+    
+    // Add like functionality in the popup
+    popupLikeButton.addEventListener('click', () => {
+        let currentLikes = parseInt(popupLikesCount.textContent);
+        
+        if (!liked) {
+            currentLikes++;
+            popupLikeButton.classList.add('liked');
+            liked = true;
+            localStorage.setItem(newsItem.cardId, 'liked');
+        } else {
+            currentLikes--;
+            popupLikeButton.classList.remove('liked');
+            liked = false;
+            localStorage.removeItem(newsItem.cardId);
+        }
+        
+        popupLikesCount.textContent = currentLikes;
+        
+        // Update the card's like count in the background
+        const cardLikeButton = document.querySelector(`[data-likes="${newsItem.likes}"]`);
+        if (cardLikeButton) {
+            const cardLikesCount = cardLikeButton.querySelector('.likes-count');
+            cardLikesCount.textContent = currentLikes;
+            if (liked) {
+                cardLikeButton.classList.add('liked');
+            } else {
+                cardLikeButton.classList.remove('liked');
+            }
+        }
+    });
     
     // Add close button event listener
     const closeBtn = popup.querySelector('.popup-close-btn');
@@ -88,13 +180,11 @@ function showNewsPopup(newsItem) {
     const moreInfoBtn = popup.querySelector('.more-info-btn');
     moreInfoBtn.addEventListener('click', () => {
         alert(`You'll be redirected to full article about "${newsItem.title}"`);
-        // Here you would typically redirect to the full article page
     });
     
     const chatgptBtn = popup.querySelector('.chatgpt-btn');
     chatgptBtn.addEventListener('click', () => {
         alert(`Opening ChatGPT Q&A for "${newsItem.title}"`);
-        // Here you would implement the ChatGPT functionality
     });
     
     // Add keyboard event listener to close popup on ESC key
@@ -208,6 +298,16 @@ function addPopupStyles() {
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
+        .popup-actions-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .popup-like-button {
+            margin-right: 5px;
+        }
+        
         .popup-close-btn {
             background: none;
             border: none;
@@ -241,16 +341,6 @@ function addPopupStyles() {
             position: relative;
         }
         
-        // .popup-image::before {
-        //     content: '';
-        //     position: absolute;
-        //     top: 0;
-        //     left: 0;
-        //     width: 100%;
-        //     height: 100%;
-        //     background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
-        // }
-        
         .popup-content {
             padding: 20px;
         }
@@ -281,6 +371,58 @@ function addPopupStyles() {
         .popup-actions {
             display: flex;
             gap: 10px;
+        }
+        
+        /* Like button styles */
+        .like-button {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            background-color: rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        body.dark-mode .like-button {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .like-button:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark-mode .like-button:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .like-icon {
+            color: #ccc;
+            font-size: 14px;
+            transition: color 0.2s, transform 0.2s;
+        }
+        
+        .like-button.liked .like-icon {
+            color: #e74c3c;
+            transform: scale(1.2);
+        }
+        
+        .like-button.liked {
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+        
+        body.dark-mode .like-button.liked {
+            background-color: rgba(231, 76, 60, 0.2);
+        }
+        
+        .likes-count {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        body.dark-mode .likes-count {
+            color: #bbb;
         }
         
         @media (max-width: 768px) {
