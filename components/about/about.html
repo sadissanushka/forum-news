@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story - DiscussDaily</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./components/header/header.css">
+    <link rel="stylesheet" href="./components/footer/footer.css">
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-container"></div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" id="breadcrumb-container"></div>
+
+    <div class="container">
+        <section class="about-section">
+            <h1>Our Story</h1>
+            <div class="about-content">
+                <img src="/api/placeholder/600/400" alt="DiscussDaily Team" class="about-image">
+                <div class="about-text">
+                    <h2>How DiscussDaily Began</h2>
+                    <p>Founded in 2020, DiscussDaily started with a simple mission: create a platform where people can engage in meaningful, respectful discussions about the topics that matter most.</p>
+                    <p>Our founder, Alex Chen, recognized that social media was becoming increasingly polarized and that nuanced conversations were becoming harder to find. Drawing from experience in journalism and community building, Alex set out to build a different kind of discussion platform.</p>
+                    <h2>Our Growth</h2>
+                    <p>What began as a small forum with just a few hundred users has now grown into a thriving community of over 1 million members. Throughout our growth, we've maintained our commitment to fostering thoughtful dialogue and providing high-quality, factual information.</p>
+                    <h2>Our Values</h2>
+                    <ul>
+                        <li><strong>Intellectual Curiosity:</strong> We believe in asking questions and challenging assumptions.</li>
+                        <li><strong>Respect:</strong> We value diverse perspectives and treat all members with dignity.</li>
+                        <li><strong>Evidence:</strong> We prioritize facts and reasoned arguments over opinions.</li>
+                        <li><strong>Inclusion:</strong> We work to make our platform accessible and welcoming to all.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script>
+        // Load header component
+        fetch('./components/header/header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+                // Load header script dynamically after HTML is inserted
+                const script = document.createElement('script');
+                script.src = './components/header/header.js';
+                document.body.appendChild(script);
+            });
+        fetch('./components/footer/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer-container').innerHTML = html;
+            });
+    </script>
+</body>
+</html>
+
+<!-- Create similar files for team.html, careers.html, and press.html following the same structure -->

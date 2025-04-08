@@ -68,11 +68,8 @@ function showNewsPopup(newsItem) {
     // Prevent scrolling of the background
     document.body.style.overflow = 'hidden';
     
-    // Add blur effect to the main content
-    const mainContent = document.querySelector('.container');
-    if (mainContent) {
-        mainContent.classList.add('blur-background');
-    }
+    // Add blur effect to all main content elements
+    applyBlurToMainContent(true);
     
     // Add close button event listener
     const closeBtn = popup.querySelector('.popup-close-btn');
@@ -111,13 +108,38 @@ function showNewsPopup(newsItem) {
     }
 }
 
+// Function to apply/remove blur to main content elements
+function applyBlurToMainContent(apply) {
+    // Target all main content sections
+    const elementsToBlur = [
+        '.container',
+        '.site-header',
+        '.hero',
+        '#breadcrumb-container',
+        '#header-container',
+        '.main-content',
+        '.news-section',
+        '.trending-forums',
+        '.categories',
+        '#footer-container'
+    ];
+    
+    elementsToBlur.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+            if (apply) {
+                element.classList.add('blur-background');
+            } else {
+                element.classList.remove('blur-background');
+            }
+        });
+    });
+}
+
 // Function to close popup and restore normal state
 function closePopup(overlay) {
-    // Remove blur effect
-    const mainContent = document.querySelector('.container');
-    if (mainContent) {
-        mainContent.classList.remove('blur-background');
-    }
+    // Remove blur effect from all elements
+    applyBlurToMainContent(false);
     
     // Allow scrolling again
     document.body.style.overflow = '';
@@ -142,6 +164,7 @@ function addPopupStyles() {
             align-items: center;
             z-index: 1000;
             padding: 20px;
+            backdrop-filter: blur(2px);
         }
         
         .news-popup {
@@ -154,6 +177,7 @@ function addPopupStyles() {
             overflow-y: auto;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             animation: popup-fade-in 0.3s ease-out;
+            z-index: 1001;
         }
         
         body.dark-mode .news-popup {
@@ -214,7 +238,18 @@ function addPopupStyles() {
             height: 300px;
             background-size: cover;
             background-position: center;
+            position: relative;
         }
+        
+        // .popup-image::before {
+        //     content: '';
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     width: 100%;
+        //     height: 100%;
+        //     background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%);
+        // }
         
         .popup-content {
             padding: 20px;
