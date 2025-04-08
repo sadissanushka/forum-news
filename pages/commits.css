@@ -1,0 +1,123 @@
+/* Commits Table Styles */
+.commits {
+    margin: 30px 0;
+    padding: 0 20px;
+}
+
+.commits table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--light-card);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dark-mode .commits table {
+    background-color: var(--dark-card);
+    box-shadow: var(--dark-box-shadow);
+}
+
+.commits thead {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+}
+
+.commits th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.commits td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .commits td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.commits tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.commits tbody tr:hover {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.commits th:first-child,
+.commits td:first-child {
+    width: 20%;
+}
+
+.commits th:nth-child(2),
+.commits td:nth-child(2) {
+    width: 15%;
+}
+
+.commits th:last-child,
+.commits td:last-child {
+    width: 65%;
+}
+
+/* Date column styling */
+.commits td:first-child {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.dark-mode .commits td:first-child {
+    color: var(--secondary-color);
+}
+
+/* Time column styling */
+.commits td:nth-child(2) {
+    color: var(--dark-text);
+    opacity: 0.7;
+    font-family: 'Courier New', monospace;
+}
+
+.dark-mode .commits td:nth-child(2) {
+    color: var(--dark-mode-text);
+    opacity: 0.7;
+}
+
+/* Message column styling */
+.commits td:last-child {
+    font-family: 'Courier New', monospace;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .commits {
+        overflow-x: auto;
+    }
+    
+    .commits table {
+        min-width: 600px;
+    }
+    
+    .commits th,
+    .commits td {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .commits th:first-child,
+    .commits td:first-child {
+        width: 25%;
+    }
+    
+    .commits th:nth-child(2),
+    .commits td:nth-child(2) {
+        width: 20%;
+    }
+    
+    .commits th:last-child,
+    .commits td:last-child {
+        width: 55%;
+    }
+}
